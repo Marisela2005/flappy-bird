@@ -6,11 +6,13 @@ public class Bird : MonoBehaviour
 {
     private bool isDead = false;
     private Rigidbody2D rb2d;
-    public float upForce = 30f;
+    private Animator anim;
+    public float upForce = 5f;
 
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
@@ -24,15 +26,16 @@ public class Bird : MonoBehaviour
     {
         if (isDead) return;
 
-        if(Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
-            rb2d.velocity = Vector2.zero;
-            rb2d.AddForce(Vector2.up*upForce);
+            rb2d.velocity = new Vector2(rb2d.velocity.x, upForce); 
+            anim.SetTrigger("Flap"); 
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         isDead = true;
+        anim.SetTrigger("Die");
     }
 }
