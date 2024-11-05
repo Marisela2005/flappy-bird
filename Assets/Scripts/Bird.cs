@@ -8,7 +8,6 @@ public class Bird : MonoBehaviour
     private Rigidbody2D rb2d;
     private Animator anim;
     public float upForce = 5f;
-
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -37,5 +36,6 @@ public class Bird : MonoBehaviour
     {
         isDead = true;
         anim.SetTrigger("Die");
+        GameController.instance.BirdDie();
     }
 }
