@@ -8,10 +8,12 @@ public class Bird : MonoBehaviour
     private Rigidbody2D rb2d;
     private Animator anim;
     public float upForce = 5f;
+    private RotateBird rotateBird;
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        rotateBird = GetComponent<RotateBird>();
     }
 
     // Start is called before the first frame update
@@ -37,6 +39,7 @@ public class Bird : MonoBehaviour
     {
         isDead = true;
         anim.SetTrigger("Die");
+        rotateBird.enabled = false;
         GameController.instance.BirdDie();
         rb2d.velocity = Vector2.zero;
         SoundSystem.instance.PlayHit();
