@@ -32,16 +32,7 @@ public class GameController : MonoBehaviour
         scoreText.text = "Score: " + score;
         SoundSystem.instance.PlayCoin();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(gameOver && Input.GetMouseButtonDown(0))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-    }
-
+    
     public void BirdDie()
     {
         gameOverText.SetActive(true);
